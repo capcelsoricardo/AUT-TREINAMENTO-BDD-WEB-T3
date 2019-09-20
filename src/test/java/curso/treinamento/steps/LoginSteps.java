@@ -1,5 +1,7 @@
 package curso.treinamento.steps;
 
+import org.junit.Assert;
+
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
@@ -11,14 +13,18 @@ public class LoginSteps {
 	LoginPage loginPage = new LoginPage(Hooks.get_driver());
 	
 	@Dado("que eu esteja na tela de login")
-	public void que_eu_deseje_realizar_login() {
+	public void que_eu_deseje_realizar_login() throws InterruptedException {
 		
-		//validação
+		loginPage.clicar_btn_remove_frame();
+		
+		Assert.assertTrue("Página login não foi apresentada.", loginPage.validar_pagina());
+		
 	}
 
 	@Quando("faço login com o usuário {string} e senha {string}")
-	public void faco_login_com_o_usuario_e_senha(String user, String pass) {
+	public void faco_login_com_o_usuario_e_senha(String user, String pass) throws InterruptedException {
 
+		
 		loginPage.preencher_email(user);
 		loginPage.preencher_senha(pass);
 		loginPage.clicar_btn_login();
