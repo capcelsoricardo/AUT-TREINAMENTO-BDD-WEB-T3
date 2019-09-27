@@ -31,8 +31,15 @@ public class LoginPage {
 	@FindBy (xpath = "//strong[text()='Login Panel']")
 	private WebElement tituloPagina;
 	
+	@FindBy(xpath = "//p[text()='The Email field must contain a valid email address.']")
+	private WebElement msgEmailInvalido;
 	
-	public Boolean validar_pagina() { 
+		
+	public boolean validar_msg_email_invalido() { 
+		return Helper.elemento_existe(msgEmailInvalido, 10);
+	}
+	
+	public boolean validar_pagina() { 
 				
 		return Helper.elemento_existe(tituloPagina, 10);
 	}
