@@ -66,7 +66,7 @@ public class AddAdminPage {
 	
 	public void selecionar_country(String country) { 
 		Select comboBox = new Select(comboBoxCountry);
-		comboBox.selectByValue(country);
+		comboBox.selectByVisibleText(country);
 
 		//new Select(comboBoxCountry).selectByValue(country);
 	}

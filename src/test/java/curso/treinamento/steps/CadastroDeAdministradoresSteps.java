@@ -1,5 +1,8 @@
 package curso.treinamento.steps;
 
+import java.util.List;
+import java.util.Map;
+
 import org.junit.Assert;
 
 import cucumber.api.java.pt.Dado;
@@ -9,6 +12,7 @@ import curso.treinamento.pages.AddAdminPage;
 import curso.treinamento.pages.AdminsManagementPage;
 import curso.treinamento.pages.MenuPage;
 import curso.treinamento.setup.Hooks;
+import io.cucumber.datatable.DataTable;
 
 public class CadastroDeAdministradoresSteps {
 	
@@ -24,19 +28,17 @@ public class CadastroDeAdministradoresSteps {
 	}
 
 	@Quando("incluo um administrador")
-	public void incluo_um_administrador(io.cucumber.datatable.DataTable dataTable) {		
+	public void incluo_um_administrador(DataTable dataTable) {		
 		adminsManagementPage.clicar_btn_add();
 		
 		Assert.assertTrue("Página Add Admin não apresentada.", addAdminPage.validar_pagina());
 		
+		List<Map<String, String>> listDataTable = dataTable.asMaps(String.class, String.class);
 		
-	    // Write code here that turns the phrase above into concrete actions
-	    // For automatic transformation, change DataTable to one of
-	    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-	    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-	    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-	    //
-	    // For other transformations you can register a DataTableType.
+		addAdminPage.preencher_first_name(listDataTable.get(0).get("First Name"));
+		addAdminPage.preencher_last_name(listDataTable.get(0).get("Last Name"));
+	
+		addAdminPage.selecionar_country(listDataTable.get(0).get("Country"));
 
 	}
 
