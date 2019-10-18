@@ -4,10 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import curso.treinamento.setup.Hooks;
 import curso.treinamento.utils.Helper;
 
 public class LoginPage {
@@ -40,7 +37,7 @@ public class LoginPage {
 	}
 	
 	public boolean validar_pagina() { 
-				
+		
 		return Helper.elemento_existe(tituloPagina, 10);
 	}
 	

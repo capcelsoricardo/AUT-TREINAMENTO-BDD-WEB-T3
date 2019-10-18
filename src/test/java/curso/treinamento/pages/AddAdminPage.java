@@ -1,11 +1,13 @@
 package curso.treinamento.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import curso.treinamento.setup.Hooks;
 import curso.treinamento.utils.Helper;
 
 public class AddAdminPage {
@@ -44,6 +46,9 @@ public class AddAdminPage {
 	@FindBy(name = "status")
 	private WebElement comboBoxStatus;
 	
+	@FindBy(xpath = "//button[text()='Submit']")
+	private WebElement btnSubmit;
+	
 	public void preencher_first_name(String firstName) { 
 		cmpFirstName.sendKeys(firstName);
 	}
@@ -71,22 +76,37 @@ public class AddAdminPage {
 		//new Select(comboBoxCountry).selectByValue(country);
 	}
 	
-	public void preencher_campo_address1(String address1) {
+	public void preencher_address1(String address1) {
 		cmpAddress1.sendKeys(address1);
 	}
 	
-	public void preencher_campo_address2(String address2) {
+	public void preencher_address2(String address2) {
 		cmpAddress2.sendKeys(address2);
 	}
 	
 	
 	public void selecionar_status(String status) { 
 		Select comboBox = new Select(comboBoxStatus);
-		comboBox.selectByValue(status);
+		comboBox.selectByVisibleText(status);
 
 		//new Select(comboBoxStatus).selectByValue(status);
 	}
 	
+	public void selecionar_add(String valor) { 		
+		Hooks.get_driver().findElement(By.xpath("(//div[contains(text(),'Add')]/following::label[contains(.,'"+ valor +"')])[1]")).click();				
+	}
+	
+	public void selecionar_edit(String valor) {
+		Hooks.get_driver().findElement(By.xpath("(//div[contains(text(),'Edit')]/following::label[contains(.,'"+ valor +"')])[1]")).click();		
+	}
+	
+	public void selecionar_remove(String valor) { 
+		Hooks.get_driver().findElement(By.xpath("(//div[contains(text(),'Remove')]/following::label[contains(.,'"+ valor +"')])[1]")).click();
+	}
+	
+	public void clicar_btn_submit() { 
+		btnSubmit.click();
+	}
 	
 	public boolean validar_pagina() { 
 		return Helper.elemento_existe(tituloPagina, 10);

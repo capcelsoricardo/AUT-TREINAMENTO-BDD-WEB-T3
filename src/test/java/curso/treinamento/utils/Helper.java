@@ -1,14 +1,18 @@
 package curso.treinamento.utils;
 
-import org.openqa.selenium.TimeoutException;
+import java.util.List;
+import java.util.Map;
+
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.pagefactory.DefaultElementLocator;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import curso.treinamento.setup.Hooks;
+import io.cucumber.datatable.DataTable;
 
 public class Helper {
+	
+	public static List<Map<String, String>> listDataTable; 
 
 	public static void aguardar_elemento(WebElement elemento, int timeout) { 
 		
@@ -29,5 +33,9 @@ public class Helper {
 			System.out.println(e.getMessage());
 			return false;
 		}		
+	}
+	
+	public static void create_datatable(DataTable dataTable_) { 
+		listDataTable = dataTable_.asMaps(String.class, String.class);
 	}
 }
